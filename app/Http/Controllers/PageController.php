@@ -25,7 +25,7 @@ class PageController extends Controller
             $path_name = $richiesta->file('image')->getClientOriginalName();
             $path_image= $richiesta->file('image')->storeAs('public/images',$path_name);
         }
-
+        
         Book::create([
             'title'=>$richiesta->title,
             'pages'=>$richiesta->pages,
@@ -37,7 +37,7 @@ class PageController extends Controller
     }
     
     public function show(Book $libro){
-
-   return view('show', compact('libro'));
-}
+        
+        return view('show', compact('libro'));
+    }
 }

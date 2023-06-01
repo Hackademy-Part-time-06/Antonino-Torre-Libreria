@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
-Route::get('/libri/crea', [PageController::class, 'create'])->name('create');
+Route::get('/libri/crea', [PageController::class, 'create'])->name('create')->middleware('auth');
 
 Route::POST('/libri/salva', [PageController::class, 'send'])->name('send');
 
