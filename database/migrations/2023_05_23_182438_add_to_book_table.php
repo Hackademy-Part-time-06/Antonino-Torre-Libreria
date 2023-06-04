@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
             $table->integer('year')->after('author');
-            $table->file('image')->after('author');
         });
     }
 
@@ -22,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('book', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             //
         });
     }

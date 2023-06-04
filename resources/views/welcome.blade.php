@@ -1,13 +1,20 @@
 <x-main>
-
-@if (session('success')) 
-Salvato correttamente
-@endif
+    
+    @if (session('success')) 
+    Salvato correttamente
+    @endif
     <ul>
         @foreach ($books as $book)
-        <a href="{{route('show',['libro'=>$book])}}">
-            <li>{{$book['title']}} - {{$book['author']}}</li>   
-        </a>         
+        
+        <li>
+            <a href="{{route('show',['libro'=>$book])}}">
+                <picture>
+                    <img src="public\storage\images\libro.png" alt="libro"> 
+                    <span>{{$book['title']}} - {{$book['author']}}</span>
+                </picture>
+            </a>
+        </li>   
+        
         @endforeach
     </ul>
 </x-main>

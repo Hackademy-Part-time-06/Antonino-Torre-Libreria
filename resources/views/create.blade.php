@@ -8,7 +8,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{route('send')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('send')}}" method="POST" enctype="multipart/form-data" class="w-75 m-auto">
         @method('POST')
         @csrf
         <div class="mb-3">
@@ -56,6 +56,6 @@
             </span>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Crea</button>
     </form>
 </x-main>

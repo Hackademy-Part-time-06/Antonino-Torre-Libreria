@@ -1,0 +1,19 @@
+@import 'bootstrap';
+
+
+body {
+    background-color: sienna;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.34);
+}
+
+ footer{
+    background-color: blueviolet;
+ }
+
+ a{
+    color: yellow;
+ }

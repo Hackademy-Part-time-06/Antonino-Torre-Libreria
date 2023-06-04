@@ -27,7 +27,7 @@ class BookRequest extends FormRequest
             'pages'=> "required|numeric",
             'author'=> "required",
             'year'=> "numeric",
-            'image'=> "required|mimes:png",
+            'image'=> "required|mimes:png,jpg",
         ];
     }
 
