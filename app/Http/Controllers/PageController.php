@@ -11,16 +11,21 @@ use PhpParser\Node\Stmt\Foreach_;
 class PageController extends Controller
 {
     public function welcome(){
+        
+        return view('welcome');
+    }
+
+    public function index(){
         $books= Book::all();
-        return view('welcome', ['books'=>$books]);
+        return view('book.index', ['books'=>$books]);
     }
     
     public function create(){
-        return view('create');
+        return view('book.create');
     }
     
     public function send(BookRequest $richiesta){
-        
+        $path_image= '';
         if($richiesta->hasFile('image') && $richiesta->file('image')->isValid()){
             $path_name = $richiesta->file('image')->getClientOriginalName();
             $path_image= $richiesta->file('image')->storeAs('public/images',$path_name);
@@ -33,11 +38,11 @@ class PageController extends Controller
             'year'=>$richiesta->year,
             'image'=>$path_image,
         ]);
-        return redirect()->route('welcome')->with('success','Creazione avvenuta con successo');
+        return redirect()->route('book.index')->with('success','Creazione avvenuta con successo');
     }
     
     public function show(Book $libro){
         
-        return view('show', compact('libro'));
+        return view('book.show', compact('libro'));
     }
 }

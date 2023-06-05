@@ -8,7 +8,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('create')}}">Inserisci il tuo libro</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('book.create')}}">Inserisci il tuo libro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href=""></a>
