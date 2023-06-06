@@ -45,4 +45,30 @@ class PageController extends Controller
         
         return view('book.show', compact('libro'));
     }
+
+    public function edit(Book $libro){
+        return view('book.edit', ['book'=> $libro]);
+    }
+
+    public function update(BookRequest $richiesta, Book $libro){
+        $path_image= $libro->image;
+        if($richiesta->hasFile('image') && $richiesta->file('image')->isValid()){
+            $path_name = $richiesta->file('image')->getClientOriginalName();
+            $path_image= $richiesta->file('image')->storeAs('public/images',$path_name);
+        }
+        
+        $libro->update([
+            'title'=>$richiesta->title,
+            'pages'=>$richiesta->pages,
+            'author'=>$richiesta->author,
+            'year'=>$richiesta->year,
+            'image'=>$path_image,
+        ]);
+        return redirect()->route('book.index')->with('success','Modifica avvenuta con successo');
+    }
+
+    public function destroy(Book $libro){
+        $libro->delete();
+        return redirect()->route('book.index')->with('success','Libro eliminato');
+    }
 }

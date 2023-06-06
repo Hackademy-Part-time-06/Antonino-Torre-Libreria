@@ -3,7 +3,10 @@
 
     <ul>
         @foreach ($categories as $category)
-            <li>{{$category['name']}}<a href="{{route('category.show',$category)}}"><button></button></a></li>
+            <li>{{$category['name']}}
+                <a href="{{route('category.show',$category)}}"><button>Dettagli</button></a>
+                <a href="{{route('category.edit',$category)}}"><button>Modifica</button></a>
+            </li>
         @endforeach
     </ul>
 </x-main>

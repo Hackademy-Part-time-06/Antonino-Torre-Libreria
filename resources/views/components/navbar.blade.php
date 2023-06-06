@@ -7,18 +7,30 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('book.create')}}">Inserisci il tuo libro</a>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Libri</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('book.create')}}">Inserisci il tuo libro @auth
+                            @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('book.index')}}">Visualizza i libri</a></li>
+                    </ul> 
+                </li> 
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorie</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('category.create')}}">Inserisci la tua categoria @auth
+                            @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('category.index')}}">Visualizza le categorie</a></li>
+                    </ul> 
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=""></a>
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Autori</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('author.create')}}">Inserisci un autore @auth
+                            @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
+                        <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('author.index')}}">Visualizza gli autori</a></li>
+                    </ul> 
                 </li>
-                
-                <li class="nav-item">
-                    
-                </li>   
-                
-                
                 <li class="nav-item dropdown">
                     @auth <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         

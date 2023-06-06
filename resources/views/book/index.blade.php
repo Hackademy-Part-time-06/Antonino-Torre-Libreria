@@ -1,7 +1,7 @@
 <x-main>
-
+    
     @if (session('success')) 
-    Salvato correttamente
+    {{session('success')}}
     @endif
     <ul>
         @foreach ($books as $book)
@@ -14,8 +14,8 @@
                 </picture>
             </a>
         </li>   
-        
+        <a href="{{route('book.edit',['libro'=>$book->id])}}"><button>Modifica</button></a>
         @endforeach
     </ul>
-
+    
 </x-main>
