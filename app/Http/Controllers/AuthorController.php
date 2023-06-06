@@ -44,7 +44,7 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         
-        return view('author.show', compact('author'));
+        return view('author.show', ['author'=>$author]);
     }
 
     /**
@@ -52,8 +52,8 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        dd($author);
-        return view('author.edit', $author);
+    
+        return view('author.edit', compact('author'));
     }
 
     /**
@@ -74,6 +74,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('author.index')->with('success', 'Autore eliminato correttamente');
     }
 }

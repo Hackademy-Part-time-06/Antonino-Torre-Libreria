@@ -47,7 +47,7 @@ Route::PUT('/categorie/{categoria}/modificato', [CategoryController::class, 'upd
 
 Route::delete('/categorie/{categoria}/cancella', [CategoryController::class, 'destroy'])->name('Category.destroy');
 
-Route::resource('autore', AuthorController::class, [
+Route::resource('author', AuthorController::class, [
     'names'=> [
         'index'=>'author.index',
         'store'=>'author.store',

@@ -8,7 +8,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{route('author.update' , ['author'=>$author->name])}}" method="POST" class="w-75 m-auto">
+    <form action="{{route('author.update' , ['author'=>$author])}}" method="POST" class="w-75 m-auto">
         @method('PUT')
         @csrf
         <div class="mb-3">
@@ -43,7 +43,7 @@
         <button type="submit" onclick="event.preventDefault();document.querySelector('#form-delete').submit();">Cancella</button>
         
     </form>
-    <form action="{{route('author.destroy', ['libro'=>$book->id])}}" method="POST" id="form-delete">
+    <form action="{{route('author.destroy', $author)}}" method="POST" id="form-delete">
         @method('DELETE')
         @csrf
     </form>
