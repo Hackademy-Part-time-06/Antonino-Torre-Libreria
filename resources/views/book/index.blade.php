@@ -4,6 +4,12 @@
     {{session('success')}}
     @endif
     <ul>
+        Guarda i libri inseriti da:
+        @foreach ($users as $user)
+            <a href="{{route('book.user', ['user'=>$user])}}"><li>{{$user->name}}</li></a>
+        @endforeach
+    </ul>
+    <ul>
         @foreach ($books as $book)
         
         <li class="position-relative">

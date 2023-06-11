@@ -21,7 +21,8 @@ class PageController extends Controller
 
     public function index(){
         $books= Book::all();
-        return view('book.index', ['books'=>$books]);
+        $users= User::all();
+        return view('book.index', ['books'=>$books, 'users'=>$users]);
     }
     
     public function create(){
@@ -81,5 +82,10 @@ class PageController extends Controller
     public function destroy(Book $libro){
         $libro->delete();
         return redirect()->route('book.index')->with('success','Libro eliminato');
+    }
+
+    public function user(User $user){
+        
+        return view('book.user',['user'=>$user]);
     }
 }

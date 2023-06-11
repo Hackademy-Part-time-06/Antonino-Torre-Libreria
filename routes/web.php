@@ -33,6 +33,8 @@ Route::PUT('/libri/{libro}/modificato', [PageController::class, 'update'])->name
 
 Route::delete('/libri/{libro}/cancella', [PageController::class, 'destroy'])->name('book.destroy');
 
+Route::get('/libri/{user}/utente', [PageController::class, 'user'])->name('book.user');
+
 Route::get('/categorie', [CategoryController::class, 'index'])->name('category.index');
 
 Route::get('/categorie/crea', [CategoryController::class, 'create'])->name('category.create')->middleware('auth');
