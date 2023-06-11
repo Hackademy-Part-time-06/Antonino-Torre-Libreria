@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\Foreach_;
 
 class PageController extends Controller
@@ -21,47 +25,54 @@ class PageController extends Controller
     }
     
     public function create(){
-        return view('book.create');
+        $authors=Author::all();
+        $categories=Category::all();
+        $users=User::all();
+        return view('book.create',compact('authors','categories','users'));
     }
     
-    public function send(BookRequest $richiesta){
+    public function send(BookRequest $request){
         $path_image= '';
-        if($richiesta->hasFile('image') && $richiesta->file('image')->isValid()){
-            $path_name = $richiesta->file('image')->getClientOriginalName();
-            $path_image= $richiesta->file('image')->storeAs('public/images',$path_name);
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $path_name = $request->file('image')->getClientOriginalName();
+            $path_image= $request->file('image')->storeAs('public/images',$path_name);
         }
         
         Book::create([
-            'title'=>$richiesta->title,
-            'pages'=>$richiesta->pages,
-            'author'=>$richiesta->author,
-            'year'=>$richiesta->year,
+            'title'=>$request->title,
+            'pages'=>$request->pages,
+            'category_id'=>$request->category_id,
+            'year'=>$request->year,
             'image'=>$path_image,
+            'author_id'=> $request->author_id,
+            'user_id'=> Auth::user()->id,
         ]);
         return redirect()->route('book.index')->with('success','Creazione avvenuta con successo');
     }
     
     public function show(Book $libro){
-        
         return view('book.show', compact('libro'));
     }
 
     public function edit(Book $libro){
-        return view('book.edit', ['book'=> $libro]);
+        $categories=Category::all();
+        $authors=Author::all();
+        return view('book.edit', ['book'=> $libro], compact('categories','authors'));
     }
 
-    public function update(BookRequest $richiesta, Book $libro){
+    public function update(BookRequest $request, Book $libro){
         $path_image= $libro->image;
-        if($richiesta->hasFile('image') && $richiesta->file('image')->isValid()){
-            $path_name = $richiesta->file('image')->getClientOriginalName();
-            $path_image= $richiesta->file('image')->storeAs('public/images',$path_name);
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $path_name = $request->file('image')->getClientOriginalName();
+            $path_image= $request->file('image')->storeAs('public/images',$path_name);
         }
         
         $libro->update([
-            'title'=>$richiesta->title,
-            'pages'=>$richiesta->pages,
-            'author'=>$richiesta->author,
-            'year'=>$richiesta->year,
+            'title'=>$request->title,
+            'author_id'=>$request->author_id,
+            'category_id'=>$request->category_id,
+            'pages'=>$request->pages,
+            'year'=>$request->year,
             'image'=>$path_image,
         ]);
         return redirect()->route('book.index')->with('success','Modifica avvenuta con successo');

@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title',150);
             $table->integer('pages');
-            $table->string('author');
+            $table->integer('year');
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('author_id')->references('id')->on('authors');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             
         });

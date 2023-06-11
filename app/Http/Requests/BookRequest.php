@@ -25,9 +25,11 @@ class BookRequest extends FormRequest
 
             'title'=> "required|string",
             'pages'=> "required|numeric",
-            'author'=> "required",
             'year'=> "numeric",
             'image'=> "mimes:png,jpg",
+            'author_id'=> "string",
+            'category_id'=> "string",
+            'user_id'=>"string",
         ];
     }
 

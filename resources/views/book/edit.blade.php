@@ -21,18 +21,43 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="pages" class="form-label">Pagine</label>
-            <input type="number" class="form-control" id="pages" name="pages" aria-describedby="pages" value="{{$book->pages}}" placeholder="Inserisci il numero delle pagine del libro">
-            @error('pages')
+            <label for="author_id" class="form-label">Autore</label>
+            
+            <select name="author_id" id="author_id" class="form-control">
+                @foreach($authors as $author)
+                @if ($book->author->id == $author->id)
+                    <option selected value="{{$author->id}}">{{ $author->name . ' ' . $author->surname }}</option>
+                @endif
+                <option value="{{ $author->id }}">{{ $author->name . ' ' . $author->surname }}</option>
+                @endforeach
+            </select>
+            @error('author_id')
             <span class="text-danger">
                 {{$message}}
             </span>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="author" class="form-label">Autore</label>
-            <input type="text" class="form-control" id="author" name="author" aria-describedby="author" value="{{$book->author}}" placeholder="Inserisci l'autore del libro">
-            @error('author')
+            <label for="category_id" class="form-label">Categoria</label>
+            
+            <select name="category_id" id="category_id" class="form-control">
+                @foreach($categories as $category)
+                @if ($book->category->id == $category->id)
+                    <option selected value="{{$category->id}}">{{ $category->name}}</option>
+                @endif
+                <option value="{{ $category->id }}">{{ $category->name}}</option>
+                @endforeach
+            </select>
+            @error('category_id')
+            <span class="text-danger">
+                {{$message}}
+            </span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="pages" class="form-label">Pagine</label>
+            <input type="number" class="form-control" id="pages" name="pages" aria-describedby="pages" value="{{$book->pages}}" placeholder="Inserisci il numero delle pagine del libro">
+            @error('pages')
             <span class="text-danger">
                 {{$message}}
             </span>
@@ -56,7 +81,7 @@
             </span>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Crea</button>
+        <button type="submit" class="btn btn-primary">Modifica</button>
         
         <button type="submit" onclick="event.preventDefault();document.querySelector('#form-delete').submit();">Cancella</button>
         

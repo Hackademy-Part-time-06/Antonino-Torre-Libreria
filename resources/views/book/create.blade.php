@@ -30,9 +30,28 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="author" class="form-label">Autore</label>
-            <input type="text" class="form-control" id="author" name="author" aria-describedby="author" value="{{old('author')}}" placeholder="Inserisci l'autore del libro">
-            @error('author')
+            <label for="author_id" class="form-label">Autore</label>
+            
+            <select name="author_id" id="author_id" class="form-control">
+                @foreach($authors as $author)
+                <option value="{{ $author->id }}">{{ $author->name . ' ' . $author->surname }}</option>
+                @endforeach
+            </select>
+            @error('author_id')
+            <span class="text-danger">
+                {{$message}}
+            </span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="author_id" class="form-label">Categoria</label>
+            
+            <select name="category_id" id="category_id" class="form-control">
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name}}</option>
+                @endforeach
+            </select>
+            @error('category_id')
             <span class="text-danger">
                 {{$message}}
             </span>

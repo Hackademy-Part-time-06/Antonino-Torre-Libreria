@@ -27,9 +27,9 @@ Route::POST('/libri/salva', [PageController::class, 'send'])->name('book.send');
 
 Route::get('/libri/{libro}/dettagli', [PageController::class, 'show'])->name('book.show');
 
-Route::get('/libri/{libro}/modifica', [PageController::class, 'edit'])->name('book.edit');
+Route::get('/libri/{libro}/modifica', [PageController::class, 'edit'])->name('book.edit')->middleware('auth');
 
-Route::PUT('/libri/{libro}/modificato', [PageController::class, 'update'])->name('book.update')->middleware('auth');
+Route::PUT('/libri/{libro}/modificato', [PageController::class, 'update'])->name('book.update');
 
 Route::delete('/libri/{libro}/cancella', [PageController::class, 'destroy'])->name('book.destroy');
 
