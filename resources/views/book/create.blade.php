@@ -42,19 +42,27 @@
                 {{$message}}
             </span>
             @enderror
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Aggiungi un autore
+              </button>
         </div>
         <div class="mb-3">
-            <label for="author_id" class="form-label">Categoria</label>
+            <label for="categories" class="form-label">Categorie</label>
             
-            <div class="form-check">
+            
                 @foreach($categories as $category)
+                <div class="form-check">
                 <input class="form-check-input" name="categories[]" type="checkbox" value="{{$category->id}}" id="categories">
                 <label class="form-check-label" for="categories">
                   {{$category->name}}
                 </label>
-              </div>
+                </div>
                 @endforeach
-              </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categorie_modal">
+                    Aggiungi un autore
+                  </button>
+            
             @error('category_id')
             <span class="text-danger">
                 {{$message}}
@@ -82,3 +90,77 @@
         <button type="submit" class="btn btn-primary">Crea</button>
     </form>
 </x-main>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Aggiungi un autore</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('author.store')}}" method="POST" enctype="multipart/form-data" class="w-75 m-auto">
+                @method('POST')
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="name" value="{{old('name')}}" placeholder="Inserisci il nome dell'autore">
+                    @error('title')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Cognome</label>
+                    <input type="text" class="form-control" id="surname" name="surname" aria-describedby="surname" value="{{old('surname')}}" placeholder="Inserisci il cognome dell'autore">
+                    @error('author')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="birthday" class="form-label">Nascita</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" aria-describedby="birthday" value="{{old('birthday')}}" placeholder="Data di sascita dell'autore">
+                    @error('year')
+                    <span class="text-danger">
+                        {{$message}}
+                    </span>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-primary">Crea</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </form>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="categorie_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Aggiungi un autore</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('category.send')}}" method="POST">
+                @method('POST')
+                @csrf
+                <label for="name" class="form-label">Categoria</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
+                @error('name')
+                <span class="text-danger">
+                    {{$message}}
+                </span>
+                @enderror
+                <button type="submit" class="btn btn-primary">Crea</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </form>
+        </div>
+          
+      </div>
+    </div>
+  </div>
