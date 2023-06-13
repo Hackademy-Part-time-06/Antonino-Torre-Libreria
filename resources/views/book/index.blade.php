@@ -3,12 +3,15 @@
     @if (session('success')) 
     {{session('success')}}
     @endif
-    <ul>
+    @auth
+        <ul>
         Guarda i libri inseriti da:
         @foreach ($users as $user)
             <a href="{{route('book.user', ['user'=>$user])}}"><li>{{$user->name}}</li></a>
         @endforeach
     </ul>
+    @endauth
+    
     <ul>
         @foreach ($books as $book)
         

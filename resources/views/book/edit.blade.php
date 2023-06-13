@@ -38,16 +38,17 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="category_id" class="form-label">Categoria</label>
+            <label for="author_id" class="form-label">Categoria</label>
             
-            <select name="category_id" id="category_id" class="form-control">
+            <div class="form-check">
                 @foreach($categories as $category)
-                @if ($book->category->id == $category->id)
-                    <option selected value="{{$category->id}}">{{ $category->name}}</option>
-                @endif
-                <option value="{{ $category->id }}">{{ $category->name}}</option>
+                <input class="form-check-input" name="categories[]" type="checkbox" value="{{$category->id}}" id="categories" @checked($book->categories->contains($category->id))>
+                <label class="form-check-label" for="categories">
+                  {{$category->name}}
+                </label>
+              </div>
                 @endforeach
-            </select>
+              </div>
             @error('category_id')
             <span class="text-danger">
                 {{$message}}

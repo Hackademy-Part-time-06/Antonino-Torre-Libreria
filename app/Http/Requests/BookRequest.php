@@ -28,7 +28,6 @@ class BookRequest extends FormRequest
             'year'=> "numeric",
             'image'=> "mimes:png,jpg",
             'author_id'=> "string",
-            'category_id'=> "string",
             'user_id'=>"string",
         ];
     }

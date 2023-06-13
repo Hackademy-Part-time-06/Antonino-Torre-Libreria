@@ -39,15 +39,15 @@ class PageController extends Controller
             $path_image= $request->file('image')->storeAs('public/images',$path_name);
         }
         
-        Book::create([
+        $data=Book::create([
             'title'=>$request->title,
             'pages'=>$request->pages,
-            'category_id'=>$request->category_id,
             'year'=>$request->year,
             'image'=>$path_image,
             'author_id'=> $request->author_id,
             'user_id'=> Auth::user()->id,
         ]);
+        $data->categories()->attach($request->categories);
         return redirect()->route('book.index')->with('success','Creazione avvenuta con successo');
     }
     
@@ -71,15 +71,17 @@ class PageController extends Controller
         $libro->update([
             'title'=>$request->title,
             'author_id'=>$request->author_id,
-            'category_id'=>$request->category_id,
             'pages'=>$request->pages,
             'year'=>$request->year,
             'image'=>$path_image,
         ]);
+        $libro->categories()->detach();
+        $libro->categories()->attach($request->categories);
         return redirect()->route('book.index')->with('success','Modifica avvenuta con successo');
     }
 
     public function destroy(Book $libro){
+        $libro->categories()->detach(); 
         $libro->delete();
         return redirect()->route('book.index')->with('success','Libro eliminato');
     }

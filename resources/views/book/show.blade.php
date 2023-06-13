@@ -5,7 +5,11 @@
         <div class="m-2">Anno 1ª pubblicazione: {{$libro['year']}}</div>
         <div class="m-2 text-end">Pagine: {{$libro['pages']}}</div>
         <div> {{$libro->author->name}}</div>
-        <div>{{$libro->category->name}}</div>
+        <ul> Categorie:
+        @foreach ($libro->categories as $category)
+            <li>{{$category->name}}</li>
+        @endforeach
+        </ul>
         <div>Creato da : {{$libro->user->name ?? "Ignoto"}}</div>
     </div>
     

@@ -46,11 +46,15 @@
         <div class="mb-3">
             <label for="author_id" class="form-label">Categoria</label>
             
-            <select name="category_id" id="category_id" class="form-control">
+            <div class="form-check">
                 @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name}}</option>
+                <input class="form-check-input" name="categories[]" type="checkbox" value="{{$category->id}}" id="categories">
+                <label class="form-check-label" for="categories">
+                  {{$category->name}}
+                </label>
+              </div>
                 @endforeach
-            </select>
+              </div>
             @error('category_id')
             <span class="text-danger">
                 {{$message}}
