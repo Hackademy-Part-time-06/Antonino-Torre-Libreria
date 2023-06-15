@@ -21,6 +21,8 @@ Route::get('/', [PageController::class, 'welcome'])->name('welcome');
 
 Route::get('/libri', [PageController::class, 'index'])->name('book.index');
 
+Route::POST('/libri/search', [PageController::class, 'search'])->name('book.search');
+
 Route::get('/libri/crea', [PageController::class, 'create'])->name('book.create')->middleware('auth');
 
 Route::POST('/libri/salva', [PageController::class, 'send'])->name('book.send');

@@ -12,6 +12,14 @@
     </ul>
     @endauth
     
+    <form action="{{route('book.search')}}" method="POST">
+        @method('POST')
+        @csrf
+        <label for="search" class="form-label">Ricerca per titolo</label>
+        <input type="text" class="form-control" name="search" id="search" value="{{old('search')}}">
+        <button type="submit">Cerca</button>
+    </form>
+
     <ul>
         @foreach ($books as $book)
         

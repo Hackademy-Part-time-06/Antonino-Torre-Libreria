@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{route('welcome')}}">Biblioteca</a>
+        <a class="navbar-brand red_color" href="{{route('welcome')}}">Biblioteca</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,7 +8,7 @@
             
             <ul class="navbar-nav">
                 <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Libri</a>
+                    <a class="nav-link dropdown-toggle red_color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Libri</a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('book.create')}}">Inserisci il tuo libro @auth
                             @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
@@ -16,7 +16,7 @@
                     </ul> 
                 </li> 
                 <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorie</a>
+                    <a class="nav-link dropdown-toggle red_color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorie</a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('category.create')}}">Inserisci la tua categoria @auth
                             @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
@@ -24,7 +24,7 @@
                     </ul> 
                 </li>
                 <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Autori</a>
+                    <a class="nav-link dropdown-toggle red_color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Autori</a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link dropdown-item" aria-current="page" href="{{route('author.create')}}">Inserisci un autore @auth
                             @else <span style="color: red">(only for member)</span>                        @endauth </a></li>
@@ -32,13 +32,13 @@
                     </ul> 
                 </li>
                 <li class="nav-item dropdown">
-                    @auth <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @auth <a class="nav-link dropdown-toggle red_color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         
                         ciao , {{Auth::user()->name}}
                         
                     </a>
                     @else
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle red_color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         
                         Ciao utente
                         

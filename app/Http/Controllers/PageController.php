@@ -15,8 +15,8 @@ use PhpParser\Node\Stmt\Foreach_;
 class PageController extends Controller
 {
     public function welcome(){
-        
-        return view('welcome');
+        $books = Book::orderBy('created_at','desc')->take(3)->get();
+        return view('welcome', ['books'=>$books]);
     }
 
     public function index(){
@@ -89,5 +89,11 @@ class PageController extends Controller
     public function user(User $user){
         
         return view('book.user',['user'=>$user]);
+    }
+
+    public function search(Request $request) {
+        $users= User::all();
+        $books= Book::where('title', 'like' , '%' . $request->search . '%')->get();
+        return view('book.index', ['books'=>$books, 'users'=>$users]);
     }
 }
